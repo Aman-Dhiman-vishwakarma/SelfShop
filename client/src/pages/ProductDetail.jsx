@@ -98,11 +98,12 @@ const ProductDetail = () => {
       toast.error("Select some size");
       return;
     }
-    if (
-      cart.findIndex((item) => item.productId._id === singleProduct?._id) < 0
-    ) {
+    const isDuplicate = cart?.some(item => 
+      item.productId._id === singleProduct?._id && item.productSizeOrConfigretion === size
+    );
+   
+    if (!isDuplicate) {
       try {
-        if (singleProduct?.availableSizes?.length !== 0 && !size) return;
         setLoading(true);
         const res = await axios.post(
           `/api/cart/addtocart/${singleProduct?._id}`,
@@ -125,7 +126,7 @@ const ProductDetail = () => {
         toast.error(error?.response?.data?.message);
       }
     } else {
-      toast.info("Products Allready Exist In The Beg");
+      toast.info("Products Allready Exist With this Size in The Beg");
     }
   };
 
@@ -248,7 +249,7 @@ const ProductDetail = () => {
             {!loading ? (
               "Add To Beg"
             ) : (
-              <span className="loading loading-spinner text-neutral loading-sm"></span>
+              <span className="loading loading-spinner text-white loading-sm"></span>
             )}
           </button>
           <button

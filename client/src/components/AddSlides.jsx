@@ -29,6 +29,7 @@ const AddSlides = () => {
         setLoading(false)
         toast.success(res.data.message);
         dispatch(setSingleSlide(res.data.slideImage))
+        naviget("/")
       }
     } catch (error) {
       setLoading(false)

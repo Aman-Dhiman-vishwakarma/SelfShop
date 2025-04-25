@@ -15,7 +15,6 @@ const orderSlice = createSlice({
         },
         setSingleOrderSummery:(state, action) => {
             state.orderSummery = [{productId:action.payload.singleProduct, quantity:action.payload.value, productSizeOrConfigretion:action.payload.size }]
-            console.log(state.orderSummery)
         },
         setTotleAmountItems:(state, action)=>{
             state.totalamount = action.payload.totalamount;
@@ -23,7 +22,6 @@ const orderSlice = createSlice({
         },
         setUserOrders:(state, action) => {
             state.userOrders = action.payload
-            console.log(state.userOrders)
         },
         setOrderSummeryToN:(state, action) => {
             state.orderSummery = null

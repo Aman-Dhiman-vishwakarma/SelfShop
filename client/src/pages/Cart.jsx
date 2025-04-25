@@ -8,7 +8,6 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { setOrderSummery, setTotleAmountItems } from "../redux/orderSlice";
 import { setvalues } from "../redux/sectionFilterSlice";
 
-
 const Cart = () => {
   const [dIndex, setDIndex] = useState(-1);
   const dispatch = useDispatch();
@@ -50,11 +49,11 @@ const Cart = () => {
         dispatch(deleteCartProduct(res?.data?.deletedCartProduct?._id));
         toast.success(res.data.message);
         setLoading(false);
-        setDIndex(-1)
+        setDIndex(-1);
       }
     } catch (error) {
       setLoading(false);
-      setDIndex(-1)
+      setDIndex(-1);
     }
   };
 
@@ -70,13 +69,13 @@ const Cart = () => {
             <ul role="list" className="-my-6 divide-y divide-gray-200">
               {cart?.length != 0 ? (
                 cart?.map((product, index) => (
-                  <li key={product.productId._id} className="flex py-6">
+                  <li key={product?._id} className="flex py-6">
                     <div className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
-                        alt={product.productId.title}
+                        alt={product?.productId?.title}
                         src={
-                          product.productId.thumbnail ||
-                          product.productId.images[0]
+                          product?.productId?.thumbnail ||
+                          product?.productId?.images[0]
                         }
                         className="size-full object-contain"
                       />
@@ -86,30 +85,39 @@ const Cart = () => {
                       <div>
                         <div className="flex justify-between text-lg font-semibold text-gray-900">
                           <h3>
-                            <a href={product.href}>{product.productId.title}</a>
+                            <a href={product?.href}>{product?.productId?.title}</a>
                           </h3>
                           <p className="ml-4">
-                            Rs.{product.productId.discountPrice}
+                            Rs.{product?.productId?.discountPrice}
                           </p>
                         </div>
-                        <p className="mt-1 text-sm text-gray-700 font-semibold">
-                          Color: {product.productId.color}
-                        </p>
+                        <div className="flex gap-4 mt-1">
+                          <p className="mt-1 text-sm text-gray-700 font-semibold">
+                            Color: {product?.productId?.color}
+                          </p>
+                          {product?.productSizeOrConfigretion && (
+                            <p className="mt-1 text-sm text-gray-700 font-semibold">
+                              <span className="text-gray-400 mr-2">|</span>
+                              Size: {product?.productSizeOrConfigretion}{" "}
+                            </p>
+                          )}
+                        </div>
                       </div>
                       <div className="flex flex-1 items-end justify-between text-sm">
                         <p className="text-gray-700 font-semibold">
-                          Qty: {product.quantity}
+                          Qty: {product?.quantity}
                         </p>
 
                         <div className="flex">
                           <button
-                            onClick={() => {deleteCartItem(product._id), setDIndex(index)}}
+                            onClick={() => {
+                              deleteCartItem(product?._id), setDIndex(index);
+                            }}
                             type="button"
                             className="font-medium text-red-600 hover:text-red-500 hover:bg-red-100 rounded-md p-1"
                           >
-                            {(loading && (dIndex == index)) ? (
+                            {loading && dIndex == index ? (
                               <span className="loading loading-spinner text-secondary loading-sm"></span>
-                              
                             ) : (
                               "Remove"
                             )}
