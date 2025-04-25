@@ -53,7 +53,7 @@ const BestSeller = () => {
       <div className="">
         <h1 className="text-3xl font-medium ml-2 p-6">Bestseller Products:</h1>
         <div className="w-[95%] mx-auto grid md:grid-cols-3 xl:grid-cols-5 justify-items-center pt-2 gap-y-6">
-          {resentproducts.length !== 0 ? (
+          {resentproducts?.length !== 0 ? (
             resentproducts.map((item, index) => (
               <SingleProduct key={index} item={item} />
             ))

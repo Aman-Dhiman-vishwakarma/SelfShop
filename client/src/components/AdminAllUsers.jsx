@@ -58,19 +58,19 @@ const AllUsers = () => {
         <tbody>
           {users?.map((user) => (
             <tr key={user._id}>
-              <td className="px-4 py-2 border">{user.fullname}</td>
-              <td className="px-4 py-2 border">{user.email}</td>
+              <td className="px-4 py-2 border">{user?.fullname}</td>
+              <td className="px-4 py-2 border">{user?.email}</td>
               <td className="px-4 py-2 border">
-                {user.isAdmin ? "Admin" : "User"}
+                {user?.isAdmin ? "Admin" : "User"}
               </td>
               <td className="px-4 py-2 border">
                 <button
-                  onClick={() => toggleAdmin(user._id, user.isAdmin)}
+                  onClick={() => toggleAdmin(user?._id, user?.isAdmin)}
                   className={`px-4 py-1 rounded text-white ${
                     user.isAdmin ? "bg-red-600" : "bg-green-700"
                   }`}
                 >
-                  {user.isAdmin ? "Revoke Admin" : "Make Admin"}
+                  {user?.isAdmin ? "Revoke Admin" : "Make Admin"}
                 </button>
               </td>
             </tr>

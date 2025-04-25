@@ -11,7 +11,6 @@ const AllAdminProducts = () => {
 
   const fetchAdminProducts = async () => {
     try {
-      console.log("suru chl ra");
       sethasmore(true);
       setLoading(true);
       const res = await axios.get(
@@ -20,8 +19,6 @@ const AllAdminProducts = () => {
       if (res?.data?.success) {
         setLoading(false);
         setProductsList([...productsList, ...res.data.products]);
-        console.log([...productsList, ...res.data.products]);
-        console.log("chl ra");
       }
       if (res?.data?.products?.length === 0) {
         sethasmore(false);
@@ -29,7 +26,6 @@ const AllAdminProducts = () => {
     } catch (error) {
       setLoading(false);
       sethasmore(false);
-      console.log(error);
     }
   };
 
@@ -42,7 +38,6 @@ const AllAdminProducts = () => {
       const res = await axios.delete(`/api/product/deleteproduct/${productId}`);
       if (res?.data?.success) {
         toast.success(res.data.message);
-        console.log(res.data.deletedProduct);
       }
     } catch (error) {
       console.log(error);
@@ -109,9 +104,9 @@ const AllAdminProducts = () => {
                     </span>{" "}
                     | Rating :{" "}
                     <span className="text-green-700 mr-1">{item?.rating}</span>|{" "}
-                    <span className="text-red-500">{item.topLavelCategory}</span> |{" "}
-                    <span className="text-red-500">{item.secondLavelCategory}</span> |{" "}
-                    <span className="text-red-500">{item.thirdLavelCategory}</span>
+                    <span className="text-red-500">{item?.topLavelCategory}</span> |{" "}
+                    <span className="text-red-500">{item?.secondLavelCategory}</span> |{" "}
+                    <span className="text-red-500">{item?.thirdLavelCategory}</span>
                   </div>
                 </div>
                 <Link

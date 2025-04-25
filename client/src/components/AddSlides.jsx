@@ -89,9 +89,9 @@ const AddSlides = () => {
       </div>
       <div className="flex flex-col gap-4 items-center mt-10">
         {slideImages &&
-          slideImages.map((slide, index) => (
+          slideImages?.map((slide, index) => (
             <div key={index} className=" relative">
-              <img className="h-72" src={slide.image} alt="" />{" "}
+              <img className="h-72" src={slide?.image} alt="" />{" "}
               <button
               onClick={() => deleteSlide(slide._id)}
                 className="btn absolute top-0 right-0 bg-white font-semibold text-red-600 px-4 py-[2px] rounded-md"

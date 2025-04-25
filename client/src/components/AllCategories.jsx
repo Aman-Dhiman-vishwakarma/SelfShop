@@ -21,7 +21,6 @@ const AllCategories = () => {
       return arr;
     });
     const newSection = { ...section, array: newArray };
-    console.log(newSection);
     try {
       setArrDeleteLoading(true);
       const res = await axios.put(
@@ -68,28 +67,27 @@ const AllCategories = () => {
       setArrDeleteLoading(false);
       console.log(error);
     }
-    console.log(newSection);
   };
 
   return (
     <div>
       <div className="mx-auto w-[90%]">
-        {bottomSections.map((item, index) => (
+        {bottomSections?.map((item, index) => (
           <div key={index} className=" shadow-md p-2 mb-4 border-[1px]">
-            <h1 className="text-lg font-semibold">{item.category}</h1>
+            <h1 className="text-lg font-semibold">{item?.category}</h1>
             <div className="flex gap-2 flex-wrap">
-              {item.sections.map((s, i) => (
+              {item?.sections.map((s, i) => (
                 <div
                   key={i}
                   className={`${
-                    item.sections.length - 1 !== i && "border-r-2"
+                    item?.sections?.length - 1 !== i && "border-r-2"
                   } py-2 pr-2`}
                 >
                   <h2 className="text-base p-1 text-red-600 font-medium">
-                    {s.name}
+                    {s?.name}
                   </h2>
                   <ul className="text-sm font-medium p-2">
-                    {s.array.map(
+                    {s?.array?.map(
                       (a, index) =>
                         sectionArray?.elm == a && sectionArray?.index == i ? (
                           <div key={index} className="">

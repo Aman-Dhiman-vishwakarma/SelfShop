@@ -432,7 +432,7 @@ const AllProducts = () => {
               {!loading ? (
                 <div className="lg:col-span-4 flex flex-wrap justify-between md:justify-normal">
                   <div className="lg:grid lg:grid-cols-4 gap-10 mx-auto ">
-                    {allProducts.length !== 0 ? (
+                    {allProducts?.length !== 0 ? (
                       allProducts?.map((item, index) => (
                         <SingleProduct key={index} item={item} />
                       ))

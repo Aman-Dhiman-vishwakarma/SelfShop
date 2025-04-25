@@ -18,7 +18,6 @@ const AllAdminOrders = () => {
       if (res.data.success) {
         setLoading(false)
         setAllOrders(res.data.allOrders);
-        console.log(res.data.allOrders);
       }
     } catch (error) {
       setLoading(false);
@@ -26,7 +25,6 @@ const AllAdminOrders = () => {
     }
   };
 
-  console.log(allOrders)
 
   useEffect(() => {
     fetctALLOrders();
