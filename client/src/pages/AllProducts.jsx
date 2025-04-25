@@ -142,7 +142,6 @@ const AllProducts = () => {
       const {data} = await axios.get("/api/brand/getallbrands")
       if (data.success) {
         setBrands(data.brands)
-        console.log(data.brands)
       }
     } catch (error) {
       console.log(error)
