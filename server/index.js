@@ -11,12 +11,17 @@ import slideRoute from "./routes/slides.route.js";
 import orderRoute from "./routes/order.route.js";
 import brandRoute from "./routes/brand.route.js";
 import cookieParser from "cookie-parser";
+import path from "path";
+
 const app = express();
 
 dotenv.config({});
 app.use(express.json());
 app.use(cookieParser());
 // app.use(express.urlencoded({ extended: true }));
+
+const __dirname = path.resolve();
+
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -35,6 +40,11 @@ app.use("/api/topcategory", topCategoryRoute);
 app.use("/api/slides", slideRoute);
 app.use("/api/order", orderRoute);
 app.use("/api/brand", brandRoute);
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+app.get("*", (req, res)=>{
+  res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
+})
 
 
 app.listen(8080, () => {
