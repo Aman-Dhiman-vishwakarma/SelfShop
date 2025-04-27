@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { setvalues } from "../redux/sectionFilterSlice";
+import { useDispatch } from "react-redux";
 
 const Search = () => {
   const [show, setShow] = useState(false);
   const [value, setValue] = useState(null);
   const [productInfo, setProductInfo] = useState([])
+  const dispatch = useDispatch();
 
   const searchProducts = async () => {
     try {
@@ -61,7 +64,7 @@ const Search = () => {
                 aria-hidden="true"
                 className="size-5 text-gray-600"
               />
-              <Link to={`/allproducts?searchTerm=${item?.title}`} onClick={()=>setValue(null)} className="flex justify-between w-full items-center list-none">{item?.title}</Link>
+              <Link to={`/allproducts?searchTerm=${item?.title}`} onClick={()=>{setValue(null), dispatch(setvalues({top:null, second:null, third:null}))}} className="flex justify-between w-full items-center list-none">{item?.title}</Link>
             </div>
           ))}
         </div>
